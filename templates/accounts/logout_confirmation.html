@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}تأیید خروج از سیستم{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0 text-center">
+                        <i class="fas fa-sign-out-alt"></i> تأیید خروج
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-question-circle fa-4x text-warning"></i>
+                        <h3 class="mt-3">آیا مطمئن هستید می‌خواهید خارج شوید؟</h3>
+                    </div>
+                    
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <button type="submit" class="btn btn-danger px-4">
+                                <i class="fas fa-check"></i> بله، خارج شوید
+                            </button>
+                            <a href="{% url 'home' %}" class="btn btn-secondary px-4">
+                                <i class="fas fa-times"></i> انصراف
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    برای ورود مجدد <a href="{% url 'login' %}">اینجا</a> کلیک کنید
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

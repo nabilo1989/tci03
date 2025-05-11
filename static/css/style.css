@@ -1,0 +1,84 @@
+/* General Styles */
+body {
+    font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navbar Styles */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+/* Table Styles */
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+}
+
+/* Button Styles */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .btn-sm {
+        margin-bottom: 5px;
+    }
+}
+
+/* Animation for alerts */
+.alert {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* در فایل static/css/style.css */
+.btn-link {
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+}
+/* static/css/style.css */
+.nav-link[onclick] {
+    cursor: pointer;
+}
+
+.nav-link[onclick]:hover {
+    color: #fff !important;
+}

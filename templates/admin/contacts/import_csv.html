@@ -1,0 +1,44 @@
+<!-- templates/admin/contacts/import_csv.html -->
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h5>Import Contacts from CSV</h5>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-upload"></i> Import
+            </button>
+            <a href="{% url 'admin:contacts_contact_changelist' %}" class="btn btn-secondary">
+                <i class="fas fa-times"></i> Cancel
+            </a>
+        </form>
+
+        <hr>
+
+        <h6>CSV File Format</h6>
+        <p>Your CSV file should contain the following columns (headers in first row):</p>
+        <ul>
+            <li><strong>first_name</strong> or <strong>نام</strong> (Required)</li>
+            <li><strong>last_name</strong> or <strong>نام خانوادگی</strong> (Required)</li>
+            <li><strong>landline</strong> or <strong>تلفن ثابت</strong> (Optional)</li>
+            <li><strong>office_phone</strong> or <strong>تلفن دفتر</strong> (Optional)</li>
+            <li><strong>mobile</strong> or <strong>موبایل</strong> (Optional)</li>
+            <li><strong>position</strong> or <strong>سمت شغلی</strong> (Optional)</li>
+            <li><strong>workplace</strong> or <strong>محل کار</strong> (Optional)</li>
+        </ul>
+
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            You can <a href="{% url 'admin:contacts_contact_changelist' %}?export=csv" class="alert-link">
+                export current contacts
+            </a> to see the correct format.
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دفترچه تلفن TCI - {% block title %}{% endblock %}</title>
+    <!-- Bootstrap 5 RTL -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- templates/base.html -->
+<!-- ... سایر کدهای بالایی ... -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <i class="fas fa-address-book"></i> دفترچه تلفن TCI
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">
+                        <i class="fas fa-home"></i> خانه
+                    </a>
+                </li>
+
+                {% if user.is_authenticated and user.is_verified %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact_create' %}">
+                            <i class="fas fa-user-plus"></i> مخاطب جدید
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact_import' %}">
+                            <i class="fas fa-file-import"></i> وارد کردن
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if user.is_superuser %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-tools"></i> مدیریت
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'admin:index' %}">
+                                    <i class="fas fa-cog"></i> پنل ادمین
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'admin:contacts_contact_changelist' %}?export=csv">
+                                    <i class="fas fa-file-export"></i> خروجی CSV
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'admin:contacts_contact_import_csv' %}">
+                                    <i class="fas fa-file-import"></i> وارد کردن CSV
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <span class="nav-link">
+                            <i class="fas fa-user"></i> {{ user.username }}
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">
+                            <i class="fas fa-id-card"></i> پروفایل
+                        </a>
+                    </li>
+                           <li class="nav-item">
+            <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> خروج
+            </a>
+            <form id="logout-form" method="post" action="{% url 'logout' %}" style="display:none;">
+                {% csrf_token %}
+            </form>
+        </li>
+
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">
+                <i class="fas fa-sign-in-alt"></i> ورود
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">
+                <i class="fas fa-user-plus"></i> ثبت‌نام
+            </a>
+        </li>
+    {% endif %}
+</ul>
+
+
+        </div>
+    </div>
+</nav>
+<!-- ... ادامه کدهای base.html ... -->
+    <div class="container mt-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+<!-- templates/registration/logout_confirmation.html -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <h5>تأیید خروج</h5>
+                </div>
+                <div class="card-body">
+                    <p>آیا مطمئن هستید که می‌خواهید خارج شوید؟</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">بله، خارج شوید</button>
+                        <a href="{% url 'home' %}" class="btn btn-secondary">انصراف</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <footer class="bg-light text-center text-lg-start mt-5">
+        <div class="text-center p-3 bg-primary text-white">
+            © 2023 دفترچه تلفن TCI
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

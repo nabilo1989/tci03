@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}حذف مخاطب{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-trash"></i> حذف مخاطب
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>آیا مطمئن هستید که می‌خواهید مخاطب "{{ contact }}" را حذف کنید؟</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-check"></i> بله، حذف شود
+                    </button>
+                    <a href="{% url 'home' %}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> انصراف
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

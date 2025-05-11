@@ -1,0 +1,11 @@
+<!-- templates/admin/contacts/change_list.html -->
+{% extends "admin/change_list.html" %}
+
+{% block object-tools %}
+    <div class="object-tools">
+        {{ block.super }}
+        <a href="import-csv/" class="btn btn-high btn-success">
+            <i class="fas fa-file-import"></i> Import CSV
+        </a>
+    </div>
+{% endblock %}

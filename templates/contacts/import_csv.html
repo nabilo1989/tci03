@@ -1,0 +1,54 @@
+<!-- templates/contacts/import_csv.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Import Contacts from CSV{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-file-import"></i> Import Contacts from CSV
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Import
+                    </button>
+                    <a href="{% url 'home' %}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancel
+                    </a>
+                </form>
+
+                <hr>
+
+                <h5>CSV File Format</h5>
+                <p>Your CSV file should have the following columns (in any order):</p>
+                <ul>
+                    <li><strong>first_name</strong> or <strong>نام</strong> (Required)</li>
+                    <li><strong>last_name</strong> or <strong>نام خانوادگی</strong> (Required)</li>
+                    <li><strong>landline</strong> or <strong>تلفن ثابت</strong> (Optional)</li>
+                    <li><strong>office_phone</strong> or <strong>تلفن دفتر</strong> (Optional)</li>
+                    <li><strong>mobile</strong> or <strong>موبایل</strong> (Optional)</li>
+                    <li><strong>position</strong> or <strong>سمت شغلی</strong> (Optional)</li>
+                    <li><strong>workplace</strong> or <strong>محل کار</strong> (Optional)</li>
+                </ul>
+
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Tip:</strong> You can export your current contacts as a CSV file
+                    to see the correct format.
+                    <a href="{% url 'export_contacts_csv' %}" class="alert-link">
+                        Export Contacts
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
