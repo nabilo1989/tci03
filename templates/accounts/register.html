@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-</body>
-</html>
+{% block title %}ثبت نام{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4>ثبت نام کاربر جدید</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary">ثبت نام</button>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                قبلاً حساب دارید؟ <a href="{% url 'login' %}">وارد شوید</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

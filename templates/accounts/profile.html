@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block content %}
+<div class="container mt-4" style="direction: rtl; text-align: right;">
+    <h2 class="mb-4">پروفایل کاربری</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="row">
+            <!-- ستون اول -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>نام:</label>
+                    {{ form.first_name }}
+                </div>
+                
+                <div class="form-group">
+                    <label>نام خانوادگی:</label>
+                    {{ form.last_name }}
+                </div>
+                
+                <div class="form-group">
+                    <label>جنسیت:</label>
+                    {{ form.gender }}
+                </div>
+            </div>
+            
+            <!-- ستون دوم -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>عکس پروفایل:</label>
+                    {{ form.profile_image }}
+                    {% if form.instance.profile_image %}
+                        <img src="{{ form.instance.profile_image.url }}" 
+                             class="img-thumbnail mt-2" 
+                             style="max-width: 150px;">
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label>سمت شغلی:</label>
+                    {{ form.job_position }}
+                </div>
+            </div>
+        </div>
+        
+        <!-- فیلدهای دیگر -->
+        <div class="form-group">
+            <label>شماره تلفن:</label>
+            {{ form.phone }}
+        </div>
+        
+        <div class="form-group">
+            <label>موبایل:</label>
+            {{ form.mobile }}
+        </div>
+        
+        <button type="submit" class="btn btn-primary mt-3">ذخیره تغییرات</button>
+    </form>
+</div>
+{% endblock %}

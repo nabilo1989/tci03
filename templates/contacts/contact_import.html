@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وارد کردن مخاطبین</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="file"], select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        .info {
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>وارد کردن مخاطبین</h1>
+
+        <div class="form-group">
+            <label for="file">فایل مخاطبین:</label>
+            <input type="file" id="file" name="file" accept=".csv,.xlsx,.xls">
+            <p class="info">فرمت‌های قابل قبول: CSV, Excel (XLSX, XLS)</p>
+        </div>
+
+        <div class="form-group">
+            <label for="type">نوع مخاطب:</label>
+            <select id="type" name="type">
+                <option value="student">دانشجو</option>
+                <option value="professor">استاد</option>
+                <option value="staff">کارمند</option>
+                <option value="other">سایر</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="university">دانشگاه:</label>
+            <select id="university" name="university">
+                <option value="specialized">دانشگاه تخصصی</option>
+                <option value="industrial">دانشگاه صنعتی</option>
+                <option value="bachelor">دانشگاه کارشناسی</option>
+                <option value="iran">دانشگاه ایران</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="semester">ترم:</label>
+            <select id="semester" name="semester">
+                <option value="summer">تابستان</option>
+                <option value="fall">پاییز</option>
+                <option value="winter">زمستان</option>
+                <option value="spring">بهار</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="department">دانشکده:</label>
+            <input type="text" id="department" name="department" placeholder="مثال: جغرافیا">
+        </div>
+
+        <button type="submit">وارد کردن مخاطبین</button>
+
+        <div class="form-group">
+            <p class="error">لطفاً از صحت فایل وارد شده مطمئن شوید.</p>
+        </div>
+    </div>
+</body>
+</html>

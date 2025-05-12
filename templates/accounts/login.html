@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-</body>
-</html>
+{% block title %}ورود به سیستم{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0 text-center">
+                    <i class="fas fa-sign-in-alt"></i> ورود به حساب کاربری
+                </h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> ورود
+                        </button>
+                    </div>
+                </form>
+                
+                <hr>
+                
+                <div class="text-center">
+                    <a href="{% url 'password_reset' %}" class="btn btn-link">فراموشی رمز عبور؟</a>
+                    <a href="{% url 'register' %}" class="btn btn-link">ثبت نام کاربر جدید</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

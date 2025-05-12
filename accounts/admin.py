@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+from django.utils.safestring import mark_safe
+
+from .models import CustomUser,Profile
 from .forms import CustomUserCreationForm, UserVerificationForm
 
 class CustomUserAdmin(UserAdmin):
@@ -24,4 +26,16 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
 
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'first_name', 'last_name', 'job_position')
+    readonly_fields = ('display_image',)
+
+    def display_image(self, obj):
+        if obj.profile_image:
+            return mark_safe(f'<img src="{obj.profile_image.url}" width="100" />')
+        return "بدون عکس"
+
+    display_image.short_description = "پیش‌نمایش عکس"
 admin.site.register(CustomUser, CustomUserAdmin)

@@ -122,25 +122,25 @@
         {% block content %}{% endblock %}
     </div>
 <!-- templates/registration/logout_confirmation.html -->
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="card">
-                <div class="card-header bg-warning">
-                    <h5>تأیید خروج</h5>
-                </div>
-                <div class="card-body">
-                    <p>آیا مطمئن هستید که می‌خواهید خارج شوید؟</p>
-                    <form method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">بله، خارج شوید</button>
-                        <a href="{% url 'home' %}" class="btn btn-secondary">انصراف</a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{#<div class="container mt-5">#}
+{#    <div class="row">#}
+{#        <div class="col-md-6 offset-md-3">#}
+{#            <div class="card">#}
+{#                <div class="card-header bg-warning">#}
+{#                    <h5>تأیید خروج</h5>#}
+{#                </div>#}
+{#                <div class="card-body">#}
+{#                    <p>آیا مطمئن هستید که می‌خواهید خارج شوید؟</p>#}
+{#                    <form method="post">#}
+{#                        {% csrf_token %}#}
+{#                        <button type="submit" class="btn btn-danger">بله، خارج شوید</button>#}
+{#                        <a href="{% url 'home' %}" class="btn btn-secondary">انصراف</a>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
 
     <footer class="bg-light text-center text-lg-start mt-5">
         <div class="text-center p-3 bg-primary text-white">

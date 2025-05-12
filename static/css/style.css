@@ -82,3 +82,28 @@ body {
 .nav-link[onclick]:hover {
     color: #fff !important;
 }
+
+/* استایل‌های صفحه لاگین */
+.card.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.card-header.bg-primary {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+.btn-link {
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+    .card-body {
+        padding: 1.25rem;
+    }
+}

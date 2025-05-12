@@ -194,3 +194,9 @@ class CSVImportView(LoginRequiredMixin, UserPassesTestMixin, FormView):
             messages.error(self.request, str(e))
 
         return super().form_valid(form)
+
+# contacts/views.py
+from django.shortcuts import render
+
+def contact_import(request):
+    return render(request, 'contacts/contact_import.html')
